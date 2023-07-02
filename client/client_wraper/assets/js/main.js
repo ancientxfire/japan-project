@@ -35,12 +35,20 @@ eventer(messageEvent,async function (e) {
             .eq("uuid",currentUUID)
         currentUUID = ""
     }
+    if (data == "gameFinished"){
+        iframeMain.src = "./loading.html"
+        task_active = false
+        currentUUID = ""
+        getTask()
+        return
+    }
 }, false);
 
 
 realtimeClient =client
     .channel('any')
     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'tasks' }, payload => {
+        
         getTask()
     })
     .subscribe()
