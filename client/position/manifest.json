@@ -1,0 +1,23 @@
+{
+    "short_name": "Quiz",
+    "name": "Quiz",
+    "icons": [
+        {
+            "src": "/assets/img/android-launchericon-192-192.png?h=42d0cec7aca659a746474c4b2b69a919",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/assets/img/android-launchericon-512-512.png?h=56b19283716d12fa704f5804b27b4ea4",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+        }
+    ],
+    "start_url": "index.html",
+    "background_color": "#261824",
+    "theme_color": "#261824",
+    "display": "fullscreen",
+    "orientation": "portrait"
+}

@@ -1,0 +1,31 @@
+@media (min-width: 1200px) {
+  #Snack_snack_bar {
+    bottom: initial !important;
+    top: 20px;
+  }
+}
+
+#score-display > .score1 {
+  color: gold;
+}
+
+#score-display > .score1 {
+  color: gold;
+}
+
+#score-display > .score2 {
+  color: silver;
+}
+
+#score-display > .score3 {
+  color: #b8661a;
+}
+
+#placement_crown {
+  display: none;
+}
+
+#Snack_snack_bar {
+  display: none;
+}
+

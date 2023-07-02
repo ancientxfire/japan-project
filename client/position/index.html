@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html data-bs-theme="auto" lang="en" style="width: 100%;height: 100%;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Position</title>
+    <meta name="theme-color" content="#261824">
+
+    <script>
+        (function() {
+
+            // JavaScript snippet handling Dark/Light mode switching
+
+            const getStoredTheme = () => localStorage.getItem('theme');
+            const setStoredTheme = theme => localStorage.setItem('theme', theme);
+            const forcedTheme = document.documentElement.getAttribute('data-bss-forced-theme');
+
+            const getPreferredTheme = () => {
+
+                if (forcedTheme) return forcedTheme;
+
+                const storedTheme = getStoredTheme();
+                if (storedTheme) {
+                    return storedTheme;
+                }
+
+                const pageTheme = document.documentElement.getAttribute('data-bs-theme');
+
+                if (pageTheme) {
+                    return pageTheme;
+                }
+
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+
+            const setTheme = theme => {
+                if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.setAttribute('data-bs-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-bs-theme', theme);
+                }
+            }
+
+            setTheme(getPreferredTheme());
+
+            const showActiveTheme = (theme, focus = false) => {
+                const themeSwitchers = [].slice.call(document.querySelectorAll('.theme-switcher'));
+
+                if (!themeSwitchers.length) return;
+
+                for (const themeSwitcher of themeSwitchers) {
+
+                    const themeSwitcherText = document.querySelector('#theme-text');
+                    const activeThemeIcon = document.querySelector('.theme-icon-active use');
+                    const btnToActive = document.querySelector('[data-bs-theme-value="' + theme + '"]');
+
+                    document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                        element.classList.remove('active');
+                        element.setAttribute('aria-pressed', 'false');
+                    });
+
+                    btnToActive.classList.add('active');
+                    btnToActive.setAttribute('aria-pressed', 'true');
+                }
+            }
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                const storedTheme = getStoredTheme();
+                if (storedTheme !== 'light' && storedTheme !== 'dark') {
+                    setTheme(getPreferredTheme());
+                }
+            });
+
+            window.addEventListener('DOMContentLoaded', () => {
+                showActiveTheme(getPreferredTheme());
+
+                document.querySelectorAll('[data-bs-theme-value]')
+                    .forEach(toggle => {
+                        toggle.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            const theme = toggle.getAttribute('data-bs-theme-value');
+                            setStoredTheme(theme);
+                            setTheme(theme);
+                            showActiveTheme(theme);
+                        })
+                    })
+            });
+        })();
+    </script>
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/android-launchericon-192-192.png?h=42d0cec7aca659a746474c4b2b69a919">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/img/android-launchericon-512-512.png?h=56b19283716d12fa704f5804b27b4ea4">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css?h=fe7fdfec700d100dc745dc64d3600cb2">
+    <link rel="manifest" href="manifest.json?h=2af0d269e33e62b6abe25216d29de1ef">
+    <link rel="stylesheet" href="assets/css/Poppins.css?h=fc641d8b9a9fbb3f33398b95e3a4b64d">
+    <link rel="stylesheet" href="assets/css/Roboto.css?h=0880b1193b0ec8e4636d9db7a9607eb1">
+    <link rel="stylesheet" href="assets/css/styles.css?h=c6cb5b80a706b7b5826e6418e544ca28">
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
+<script>
+    var OneSignal = window.OneSignal || [];
+     var initConfig = {
+        appId: "c05573cd-b006-40d5-b54d-9e35a546f562",
+         notifyButton: {
+             enable: true
+         },
+     };
+     OneSignal.push(function () {
+         OneSignal.SERVICE_WORKER_PARAM = { scope: './assets/js/' };
+         OneSignal.SERVICE_WORKER_PATH = './assets/js/OneSignalSDKWorker.js'
+         OneSignal.SERVICE_WORKER_UPDATER_PATH = './assets/js/OneSignalSDKUpdaterWorker.js'
+         OneSignal.init(initConfig);
+     });
+ </script>
+ 
+</head>
+
+<body class="d-flex justify-content-center align-items-center" style="width: 100%;height: 100%;overflow-x: hidden;">
+    <div class="d-flex flex-column align-items-center" id="score-display"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -32 576 576" width="1em" height="1em" fill="currentColor" id="placement_crown" style="font-size: 252px;border-style: none;border-color: var(--bs-gray-300);margin-top: -39px;">
+            <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+            <path d="M576 136c0 22.09-17.91 40-40 40c-.248 0-.4551-.1266-.7031-.1305l-50.52 277.9C482 468.9 468.8 480 453.3 480H122.7c-15.46 0-28.72-11.06-31.48-26.27L40.71 175.9C40.46 175.9 40.25 176 39.1 176c-22.09 0-40-17.91-40-40S17.91 96 39.1 96s40 17.91 40 40c0 8.998-3.521 16.89-8.537 23.57l89.63 71.7c15.91 12.73 39.5 7.544 48.61-10.68l57.6-115.2C255.1 98.34 247.1 86.34 247.1 72C247.1 49.91 265.9 32 288 32s39.1 17.91 39.1 40c0 14.34-7.963 26.34-19.3 33.4l57.6 115.2c9.111 18.22 32.71 23.4 48.61 10.68l89.63-71.7C499.5 152.9 496 144.1 496 136C496 113.9 513.9 96 536 96S576 113.9 576 136z"></path>
+        </svg>
+        <h1 id="placement_headding" style="font-size: 21vw;font-family: Poppins, sans-serif;">Platz -</h1>
+    </div>
+    <div class="justify-content-center" id="Snack_snack_bar" style="position: fixed;bottom: 20px;width: 100%;">
+        <h1 style="font-size: 8vw;font-family: Poppins, sans-serif;">Snack gibt's am Tisch</h1>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/initSupabase.js?h=c24f7444666bf28086f511edfa51815d"></script>
+    <script src="assets/js/main.js?h=c96e24ad1bc96ded6b3354e3542e5035"></script>
+</body>
+
+</html>
